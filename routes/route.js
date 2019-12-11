@@ -2,10 +2,12 @@ const { Router } = require('express');
 const TodoDB = require('../model/TodoDB');
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    const todos = await TodoDB.find({});
     res.render('index', {
         title: 'TODO List',
-        isIndex: true
+        isIndex: true,
+        todos
     });
 });
 
@@ -21,6 +23,15 @@ router.post('/create', async (req, res) => {
         title: req.body.title
     });
     await todo.save();
+    res.redirect('/');
+});
+
+router.post('/completed', async (req, res) => {
+
+});
+
+router.post('/remove', async (req, res) => {
+    await TodoDB.deleteOne({_id: req.body.id});
     res.redirect('/');
 });
 
