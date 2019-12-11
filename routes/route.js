@@ -27,7 +27,10 @@ router.post('/create', async (req, res) => {
 });
 
 router.post('/completed', async (req, res) => {
-
+    const task = await TodoDB.findById(req.body.id);
+    task.completed = !!req.body.complete;
+    await task.save();
+    res.redirect('/');
 });
 
 router.post('/remove', async (req, res) => {

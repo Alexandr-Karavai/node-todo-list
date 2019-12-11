@@ -1,8 +1,12 @@
 <form action="/create" method="POST">
   <h1>Create task</h1>
-  <div class="form-group">
-    <label>Title</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Title</span>
+    </div>
     <input type="text" class="form-control" name="title" placeholder="Enter task" required>
+    <div class="input-group-append">
+      <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">Create</button>
 </form>
